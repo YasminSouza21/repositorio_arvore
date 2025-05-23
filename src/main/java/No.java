@@ -12,4 +12,9 @@ public class No {
     public void setValor(Integer valor) {
         this.valor = valor;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(valor);
+    }
 }

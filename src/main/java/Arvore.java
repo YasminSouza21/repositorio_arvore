@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Arvore {
     private No noRaiz;
     private Arvore arvoreDireita;
@@ -53,4 +56,23 @@ public class Arvore {
 
         return count;
     }
+
+    public void countPreOrder(){
+        if(this.noRaiz == null){
+            throw new RuntimeException("Instancie o nó raiz");
+        }
+
+        System.out.println(this.noRaiz);
+
+      if(this.arvoreEsquerda != null){
+          this.arvoreEsquerda.countPreOrder();
+      }
+
+      if(arvoreDireita != null){
+          this.arvoreDireita.countPreOrder();
+      }
+
+    }
+
+
 }
