@@ -1,3 +1,4 @@
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,5 +75,23 @@ public class Arvore {
 
     }
 
+    public void countEmOrder(){
 
+        if(this.noRaiz == null){
+            throw new RuntimeException("Instancie o nó raiz");
+        }
+
+        if(this.arvoreEsquerda != null) {
+            this.arvoreEsquerda.countEmOrder();
+            System.out.print(this.noRaiz.getValor() + " ");
+            if(this.arvoreDireita != null && (this.arvoreDireita.arvoreDireita == null && this.arvoreDireita.arvoreEsquerda == null)){
+                System.out.print(this.arvoreDireita.noRaiz.getValor() + " ");
+            } else {
+                this.arvoreDireita.countEmOrder();
+            }
+        } else {
+            System.out.print(this.noRaiz.getValor() + " ");
+        }
+
+    }
 }
