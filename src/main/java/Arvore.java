@@ -62,7 +62,6 @@ public class Arvore {
         if(this.noRaiz == null){
             throw new RuntimeException("Instancie o nó raiz");
         }
-
         System.out.println(this.noRaiz);
 
       if(this.arvoreEsquerda != null){
@@ -93,5 +92,21 @@ public class Arvore {
             System.out.print(this.noRaiz.getValor() + " ");
         }
 
+    }
+
+    public void countPosOrder(){
+        if(this.noRaiz == null){
+            throw new RuntimeException("Instancie o nó raiz");
+        }
+
+        if(this.arvoreEsquerda != null){
+            this.arvoreEsquerda.countPosOrder();
+            if(this.arvoreDireita != null){
+                this.arvoreDireita.countPosOrder();
+                System.out.print(this.noRaiz.getValor() + " ");
+            }
+        } else {
+            System.out.print(this.noRaiz.getValor() + " ");
+        }
     }
 }
