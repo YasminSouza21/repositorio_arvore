@@ -10,6 +10,6 @@ public class Main {
         arvore.inserir(9);
         arvore.inserir(13);
 
-        arvore.countPosOrder();
+        System.out.println(arvore.contarNosComFila());
     }
 }

@@ -1,6 +1,6 @@
-import java.time.Period;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
 
 public class Arvore {
     private No noRaiz;
@@ -108,5 +108,63 @@ public class Arvore {
         } else {
             System.out.print(this.noRaiz.getValor() + " ");
         }
+    }
+
+    public int contarNosFolhas(int folhas){
+
+        if(this.noRaiz == null){
+            throw new RuntimeException("Instancie o nó raiz");
+        }
+
+        int countFolhas = 1;
+
+        if(this.arvoreEsquerda != null){
+            this.arvoreEsquerda.contarNosFolhas(countFolhas);
+        }
+
+        if(this.arvoreDireita != null){
+            this.arvoreDireita.contarNosFolhas(countFolhas);
+        }
+
+        return countFolhas;
+    }
+
+    public int contarNosComPilha(){
+        if(this.noRaiz == null) return 0;
+
+        Stack<No> pilha = new Stack<>();
+        pilha.add(this.noRaiz);
+
+        int count = 0;
+
+        while(!pilha.isEmpty()){
+            No atual = pilha.pop();
+            count++;
+
+            if(this.arvoreEsquerda != null) pilha.add(this.arvoreEsquerda.noRaiz);
+            if(this.arvoreDireita != null) pilha.add(this.arvoreDireita.noRaiz);
+        }
+
+        return count;
+    }
+
+
+    public int contarNosComFila(){
+        if(this.noRaiz == null) return 0;
+
+        Queue<No> fila = new LinkedList<>();
+        fila.add(this.noRaiz);
+
+        int count = 0;
+
+        while(!fila.isEmpty()){
+            No atual = fila.poll();
+            count++;
+
+            if(this.arvoreEsquerda != null) fila.add(this.arvoreEsquerda.noRaiz);
+            if(this.arvoreDireita != null) fila.add(this.arvoreDireita.noRaiz);
+        }
+
+        return count;
     }
 }
