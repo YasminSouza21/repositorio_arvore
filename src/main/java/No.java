@@ -1,8 +1,10 @@
 public class No {
     private Integer valor;
+    private int altura;
 
     public No(Integer valor) {
         this.valor = valor;
+        this.altura = 0;
     }
 
     public Integer getValor() {
@@ -16,5 +18,9 @@ public class No {
     @Override
     public String toString() {
         return String.valueOf(valor);
+    }
+
+    public void atualizarAltura(){
+        this.altura++;
     }
 }

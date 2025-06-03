@@ -148,7 +148,6 @@ public class Arvore {
         return count;
     }
 
-
     public int contarNosComFila(){
         if(this.noRaiz == null) return 0;
 
@@ -161,10 +160,11 @@ public class Arvore {
             No atual = fila.poll();
             count++;
 
-            if(this.arvoreEsquerda != null) fila.add(this.arvoreEsquerda.noRaiz);
-            if(this.arvoreDireita != null) fila.add(this.arvoreDireita.noRaiz);
+            if(this.arvoreEsquerda != null) this.arvoreEsquerda.contarNosComFila();
+            if(this.arvoreDireita != null) this.arvoreDireita.contarNosComFila();
         }
 
         return count;
     }
+
 }
