@@ -1,15 +1,7 @@
 public class Main {
     public static void main(String[] args) {
-        Arvore arvore = new Arvore();
+        ArvoreAvl arvoreAvl = new ArvoreAvl(new No(5));
 
-        arvore.inserir(10);
-        arvore.inserir(8);
-        arvore.inserir(12);
-        arvore.inserir(11);
-        arvore.inserir(7);
-        arvore.inserir(9);
-        arvore.inserir(13);
-
-        System.out.println(arvore.contarNosComFila());
+        System.out.println(arvoreAvl.verificarFator(arvoreAvl.getNoPrincipal()));
     }
 }
