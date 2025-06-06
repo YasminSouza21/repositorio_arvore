@@ -14,20 +14,52 @@ public class ArvoreAvl {
         this.noPrincipal = no;
     }
 
+    public int altura(No no) {
+        if (no == null) return 0;
+        return  Math.max(altura(no.getEsquerda()), altura(no.getDireita()));
+    }
+
     public int verificarFator(No no) {
-        int alturaEsquerda = (noPrincipal == null) ? 0 : noPrincipal.getAltura();
-        int alturaDireta = (noPrincipal == null) ? 0 : noPrincipal.getAltura();
-        if (no.getEsquerda() != null) {
-            verificarFator(no.getEsquerda());
-            alturaEsquerda = (no.getEsquerda() != null) ? no.getAltura() : 0;
+        if (no == null) return 0;
+
+        int alturaEsquerda = altura(no.getEsquerda());
+        int alturaDireita = altura(no.getDireita());
+
+        return alturaEsquerda - alturaDireita;
+    }
+
+    public No rotacaoDireita(No no){
+        No noEsquerda = no.getEsquerda();
+        No varTemp = noEsquerda.getDireita();
+
+        noEsquerda.setDireita(no);
+        no.setEsquerda(varTemp);
+
+        no.setAltura(Math.max(altura(no.getEsquerda()), altura(no.getDireita()) +1));
+
+        return  noEsquerda;
+    }
+
+    public No inserir(No no, int chave){
+        if(no == null){
+            return new No(chave);
         }
 
-        if(no.getDireita() != null){
-            verificarFator(no.getDireita());
-            alturaDireta = (no.getDireita() != null) ? no.getAltura() : 0;
+        if(chave < no.getValor()){
+            noPrincipal = inserir(no.getEsquerda(), chave);
+        } else if(chave > no.getValor()){
+            noPrincipal = inserir(no.getDireita(), chave);
+        } else{
+            return no;
         }
 
-        return ((alturaEsquerda - alturaDireta) == 1 ) ? 1 : alturaEsquerda - alturaDireta;
+        noPrincipal.setAltura(1 + Math.max(altura(no.getEsquerda()), altura(no.getDireita())));
+
+        int balanceamento = verificarFator(no);
+
+        if(balanceamento > 1 && chave < no.getEsquerda().getValor()){
+            return rotacaoDireita(no);
+        }
     }
 
 
