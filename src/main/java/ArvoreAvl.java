@@ -60,6 +60,24 @@ public class ArvoreAvl {
         if(balanceamento > 1 && chave < no.getEsquerda().getValor()){
             return rotacaoDireita(no);
         }
+
+        if(balanceamento > 1 && chave > no.getEsquerda().getValor()){
+            return rotacaoDireita(no);
+        }
+
+        return no;
+    }
+
+    public void emOrdem() {
+        emOrdem(this.noPrincipal);
+    }
+
+    private void emOrdem(No no) {
+        if (no != null) {
+            emOrdem(no.getEsquerda());
+            System.out.print(no.getValor() + " ");
+            emOrdem(no.getDireita());
+        }
     }
 
 
