@@ -1,15 +1,17 @@
 public class Main {
     public static void main(String[] args) {
-        ArvoreAvl arvoreAvl = new ArvoreAvl(new No(5));
+        ArvoreRubroNegra tree = new ArvoreRubroNegra();
 
-        int[] chaves = {10, 20, 30, 40, 60, 25};
-
-        for(int chave : chaves){
-            arvoreAvl.inserir(arvoreAvl.getNoPrincipal(), chave);
+        int[] keys = {10, 20, 30, 15, 5, 25};
+        for(int key : keys){
+            tree.inserir(key);
         }
 
-        System.out.println("Percurso em ordem da árvore AVL");
+        tree.inorder();
 
-        arvoreAvl.emOrdem();
+        tree.delete(15);
+        tree.delete(10);
+
+        tree.inorder();
     }
 }

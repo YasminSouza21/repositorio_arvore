@@ -3,10 +3,22 @@ public class NoArvoreRubroNegra {
     private Cores cor;
     private NoArvoreRubroNegra direita;
     private NoArvoreRubroNegra esquerda;
+    private NoArvoreRubroNegra parent;
 
-    public NoArvoreRubroNegra(int valor, Cores cor) {
+    public NoArvoreRubroNegra(int valor) {
         this.valor = valor;
-        this.cor = cor;
+        this.cor = Cores.PRETO;
+        this.direita = null;
+        this.esquerda = null;
+        this.parent = null;
+    }
+
+    public NoArvoreRubroNegra getParent() {
+        return parent;
+    }
+
+    public void setParent(NoArvoreRubroNegra parent) {
+        this.parent = parent;
     }
 
     public int getValor() {
